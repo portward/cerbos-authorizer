@@ -1,7 +1,7 @@
 # Cerbos authorizer
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/portwarden/cerbos-authorizer/ci.yaml?style=flat-square)](https://github.com/portwarden/cerbos-authorizer/actions/workflows/ci.yaml)
-[![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/mod/github.com/portwarden/cerbos-authorizer)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/portward/cerbos-authorizer/ci.yaml?style=flat-square)](https://github.com/portward/cerbos-authorizer/actions/workflows/ci.yaml)
+[![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/mod/github.com/portward/cerbos-authorizer)
 [![built with nix](https://img.shields.io/badge/builtwith-nix-7d81f7?style=flat-square)](https://builtwithnix.org)
 
 **Authorize registry token requests using [Cerbos](https://cerbos.dev).**
