@@ -167,4 +167,19 @@ func TestAuthorizer(t *testing.T) {
 
 		assert.Equal(t, expectedScopes, grantedScopes)
 	})
+
+	t.Run("anonymous", func(t *testing.T) {
+		requestedScopes := auth.Scopes{
+			{
+				Resource: auth.Resource{
+					Type: "repository",
+					Name: "image",
+				},
+				Actions: []string{"pull", "push"},
+			},
+		}
+
+		_, err := authorizer.Authorize(context.Background(), nil, requestedScopes)
+		require.ErrorIs(t, err, auth.ErrUnauthorized)
+	})
 }
