@@ -32,6 +32,11 @@ func NewAuthorizer(client *cerbos.GRPCClient, defaultRoles []string) Authorizer 
 
 // Authorize implements the [auth.Authorizer] interface.
 func (a Authorizer) Authorize(ctx context.Context, subject auth.Subject, requestedScopes []auth.Scope) ([]auth.Scope, error) {
+	// TODO: authorizer should probably not be called with an empty list of scopes
+	if len(requestedScopes) == 0 {
+		return []auth.Scope{}, nil
+	}
+
 	principal := cerbos.NewPrincipal(subject.ID().String()).
 		WithAttributes(subject.Attributes()) // TODO: allow limiting what attributes are attached to the principal
 
