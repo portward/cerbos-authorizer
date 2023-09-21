@@ -37,6 +37,10 @@ func (a Authorizer) Authorize(ctx context.Context, subject auth.Subject, request
 		return []auth.Scope{}, nil
 	}
 
+	if subject == nil {
+		return nil, auth.ErrUnauthorized
+	}
+
 	principal := cerbos.NewPrincipal(subject.ID().String()).
 		WithAttributes(subject.Attributes()) // TODO: allow limiting what attributes are attached to the principal
 
