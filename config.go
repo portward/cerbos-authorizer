@@ -11,13 +11,25 @@ import (
 //
 // [AuthorizerFactory]: https://pkg.go.dev/github.com/portward/portward/config#AuthorizerFactory
 type Config struct {
-	Address      string   `mapstructure:"address"`
-	DefaultRoles []string `mapstructure:"defaultRoles"`
+	Address      string        `mapstructure:"address"`
+	Options      OptionsConfig `mapstructure:"options"`
+	DefaultRoles []string      `mapstructure:"defaultRoles"`
+}
+
+// OptionsConfig implements options for the Cerbos client connection.
+type OptionsConfig struct {
+	Plaintext bool `mapstructure:"plaintext"`
 }
 
 // New returns a new [Authorizer] from the configuration.
 func (c Config) New() (auth.Authorizer, error) {
-	client, err := cerbos.New(c.Address)
+	var options []cerbos.Opt
+
+	if c.Options.Plaintext {
+		options = append(options, cerbos.WithPlaintext())
+	}
+
+	client, err := cerbos.New(c.Address, options...)
 	if err != nil {
 		return nil, err
 	}
