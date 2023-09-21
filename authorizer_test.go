@@ -152,4 +152,19 @@ func TestAuthorizer(t *testing.T) {
 
 		assert.Equal(t, expectedScopes, grantedScopes)
 	})
+
+	t.Run("empty scopes", func(t *testing.T) {
+		subject := subjectStub{
+			id: auth.SubjectIDFromString("admin"),
+		}
+
+		requestedScopes := auth.Scopes{}
+
+		grantedScopes, err := authorizer.Authorize(context.Background(), subject, requestedScopes)
+		require.NoError(t, err)
+
+		expectedScopes := []auth.Scope{}
+
+		assert.Equal(t, expectedScopes, grantedScopes)
+	})
 }
