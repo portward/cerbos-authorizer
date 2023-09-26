@@ -1,4 +1,4 @@
-package cerbosauthorizer
+package cerbos
 
 import (
 	"fmt"
