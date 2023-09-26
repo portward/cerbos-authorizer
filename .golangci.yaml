@@ -6,9 +6,9 @@ linters-settings:
     sections:
       - standard
       - default
-      - prefix(github.com/portward/cerbos-authorizer)
+      - prefix(github.com/portward/cerbos)
   goimports:
-    local-prefixes: github.com/portward/cerbos-authorizer
+    local-prefixes: github.com/portward/cerbos
   misspell:
     locale: US
   nolintlint:
