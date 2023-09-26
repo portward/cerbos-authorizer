@@ -1,11 +1,11 @@
-module github.com/portward/cerbos-authorizer
+module github.com/portward/cerbos
 
 go 1.21.0
 
 require (
 	github.com/cerbos/cerbos-sdk-go v0.1.0
 	github.com/cerbos/cerbos/api/genpb v0.0.0-20230914104512-0d63f1e32f77
-	github.com/portward/registry-auth v0.0.1
+	github.com/portward/registry-auth v0.1.0
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
