@@ -57,10 +57,6 @@ func (a Authorizer) Authorize(ctx context.Context, subject auth.Subject, request
 	for _, scope := range requestedScopes {
 		resource := cerbos.NewResource(scope.Type, scope.Name)
 
-		if scope.Class != "" {
-			resource = resource.WithAttr("class", scope.Class)
-		}
-
 		resourceBatch.Add(resource, scope.Actions...)
 	}
 
