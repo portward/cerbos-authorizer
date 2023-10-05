@@ -30,6 +30,9 @@
               (golangci-lint.override (prev: {
                 buildGoModule = pkgs.buildGo121Module;
               }))
+
+              dagger
+              mage
             ];
 
             # https://github.com/cachix/devenv/issues/528#issuecomment-1556108767
