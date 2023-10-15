@@ -6,9 +6,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 
-	"dagger.io/dagger"
 	_ "github.com/magefile/mage/mg" // mg contains helpful utility functions, like Deps
 )
 
@@ -18,15 +16,11 @@ const (
 )
 
 func Test(ctx context.Context) error {
-	client, err := dagger.Connect(ctx, dagger.WithLogOutput(os.Stderr))
-	if err != nil {
-		return err
-	}
-	defer client.Close()
+	client := dag
 
-	var cerbos *dagger.Container
+	var cerbos *Container
 
-	var test *dagger.Container
+	var test *Container
 
 	// Prepare
 	{
@@ -58,7 +52,7 @@ func Test(ctx context.Context) error {
 	}
 
 	dir := client.Host().
-		Directory(".", dagger.HostDirectoryOpts{
+		Directory(".", HostDirectoryOpts{
 			Exclude: []string{
 				".devenv/",
 				".direnv/",
@@ -72,7 +66,7 @@ func Test(ctx context.Context) error {
 		})
 
 	_, err = client.Pipeline("Test").
-		Container(dagger.ContainerOpts{
+		Container(ContainerOpts{
 			ID: testContainerID,
 		}).
 		WithMountedDirectory("/src", dir).
@@ -87,19 +81,19 @@ func Test(ctx context.Context) error {
 }
 
 // TODO: add go cache
-func testContainer(client *dagger.Client) *dagger.Container {
+func testContainer(client *Client) *Container {
 	return client.Container().
 		From(fmt.Sprintf("%s:%s", goImageRepo, goVersion)).
 		WithEntrypoint(nil).
 		WithWorkdir("/src")
 }
 
-func cerbosContainer(client *dagger.Client) *dagger.Container {
+func cerbosContainer(client *Client) *Container {
 	config := client.Host().Directory("./etc/cerbos/policies")
 
 	return client.Container().From("ghcr.io/cerbos/cerbos:0.30.0").
-		WithExposedPort(3592, dagger.ContainerWithExposedPortOpts{Protocol: dagger.Tcp}).
-		WithExposedPort(3593, dagger.ContainerWithExposedPortOpts{Protocol: dagger.Tcp}).
+		WithExposedPort(3592, ContainerWithExposedPortOpts{Protocol: Tcp}).
+		WithExposedPort(3593, ContainerWithExposedPortOpts{Protocol: Tcp}).
 		WithMountedDirectory("/policies", config).
 		WithExec(nil)
 }
