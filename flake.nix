@@ -26,8 +26,6 @@
               just
               skopeo
               golangci-lint
-
-              mage
             ] ++ [
               inputs'.dagger.packages.dagger
             ];
