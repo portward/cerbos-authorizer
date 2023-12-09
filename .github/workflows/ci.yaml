@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: ['1.21']
+        go: ["1.21"]
 
     steps:
       - name: Checkout repository
@@ -43,6 +43,35 @@ jobs:
 
       - name: Cleanup Docker Compose
         run: docker compose down -v
+        if: always()
+
+  test2:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+
+      - name: Set up Nix
+        uses: cachix/install-nix-action@6a9a9e84a173d90b3ffb42c5ddaf9ea033fad011 # v23
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up magic Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@8a218f9e264e9c3803c9a1ee1c30d8e4ab55be63 # v2
+
+      - name: Prepare Nix shell
+        run: nix develop --impure .#ci
+
+      - name: Run Dagger pipeline
+        run: nix develop --impure .#ci -c dagger run mage -d ci test
+        env:
+          DAGGER_CLOUD_TOKEN: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+
+      - name: Stop Engine
+        run: docker stop -t 300 $(docker ps --filter name="dagger-engine-*" -q)
         if: always()
 
   lint:

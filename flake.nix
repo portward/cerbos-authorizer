@@ -3,6 +3,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     devenv.url = "github:cachix/devenv";
+    dagger.url = "github:dagger/nix";
+    dagger.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ flake-parts, ... }:
@@ -18,18 +20,16 @@
           default = {
             languages = {
               go.enable = true;
-              go.package = pkgs.lib.mkDefault pkgs.go_1_21;
             };
 
             packages = with pkgs; [
               just
               skopeo
-              # golangci-lint
+              golangci-lint
 
-              # TODO: remove once https://github.com/NixOS/nixpkgs/pull/254878 hits unstable
-              (golangci-lint.override (prev: {
-                buildGoModule = pkgs.buildGo121Module;
-              }))
+              mage
+            ] ++ [
+              inputs'.dagger.packages.dagger
             ];
 
             # https://github.com/cachix/devenv/issues/528#issuecomment-1556108767
