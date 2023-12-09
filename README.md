@@ -13,6 +13,22 @@
 
 **For an optimal developer experience, it is recommended to install [Nix](https://nixos.org/download.html) and [direnv](https://direnv.net/docs/installation.html).**
 
+### Using Dagger
+
+Run tests:
+
+```shell
+dagger call test
+```
+
+Run linters:
+
+```shell
+dagger call lint
+```
+
+### Manual workflow
+
 Launch Cerbos:
 
 ```shell
