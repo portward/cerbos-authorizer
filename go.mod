@@ -3,7 +3,7 @@ module github.com/portward/cerbos
 go 1.21.0
 
 require (
-	github.com/cerbos/cerbos-sdk-go v0.2.1
+	github.com/cerbos/cerbos-sdk-go v0.2.2
 	github.com/cerbos/cerbos/api/genpb v0.34.0
 	github.com/portward/registry-auth v0.4.0
 	github.com/stretchr/testify v1.9.0
@@ -12,14 +12,14 @@ require (
 
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.32.0-20240212200630-3014d81c3a48.1 // indirect
-	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20230512164433-5d1fd1a340c9 // indirect
-	github.com/bufbuild/protovalidate-go v0.4.0 // indirect
+	github.com/antlr4-go/antlr/v4 v4.13.0 // indirect
+	github.com/bufbuild/protovalidate-go v0.5.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.2.0 // indirect
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/google/cel-go v0.18.1 // indirect
+	github.com/google/cel-go v0.19.0 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/gorilla/schema v1.2.1 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.0.1 // indirect
@@ -29,7 +29,7 @@ require (
 	github.com/lestrrat-go/httpcc v1.0.1 // indirect
 	github.com/lestrrat-go/httprc v1.0.4 // indirect
 	github.com/lestrrat-go/iter v1.0.2 // indirect
-	github.com/lestrrat-go/jwx/v2 v2.0.16 // indirect
+	github.com/lestrrat-go/jwx/v2 v2.0.19 // indirect
 	github.com/lestrrat-go/option v1.0.1 // indirect
 	github.com/planetscale/vtprotobuf v0.6.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
