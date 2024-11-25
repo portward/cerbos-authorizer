@@ -6,7 +6,7 @@ require (
 	github.com/cerbos/cerbos-sdk-go v0.2.8
 	github.com/cerbos/cerbos/api/genpb v0.36.1-0.20240612095234-af7a526c03b6
 	github.com/portward/registry-auth v0.6.0
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
 	golang.org/x/exp v0.0.0-20240325151524-a685a6edb6d8
 )
 
